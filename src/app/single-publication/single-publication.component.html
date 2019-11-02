@@ -1,0 +1,17 @@
+<div class="card">
+  <div class="card-header p-0 small" id="headingOne">
+    <h5 class="mb-0">
+      <button class="btn btn-link text-info" data-toggle="collapse" [attr.data-target]="'#' + 'collapse' + index" aria-expanded="true" [attr.aria-controls]="'collapse' + index">
+        {{publicationInformations.title.title.value}}
+      </button>
+    </h5>
+  </div>
+
+  <div id="{{'collapse' + index}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+    <div class="card-body">
+      <small>
+      {{publicationInformations.citation['citation-value']}}
+      </small>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<div class="row justify-content-center mt-5">
+  <div class="input-group col-6">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon3">https://orcid.org/</span>
+    </div>
+    <input type="text" placeholder="orcID"  class="form-control" [(ngModel)]="searchBar" aria-describedby="basic-addon3">
+  </div>
+</div>
+
+<div class="row d-flex justify-content-center my-5">
+  <app-bib-list class="col-6" *ngIf="isOrcidValid(); else notValidOrcid" [orcid]="searchBar"></app-bib-list>
+</div>
+
+
+<ng-template #notValidOrcid>
+  Orcid is not valid
+</ng-template>
