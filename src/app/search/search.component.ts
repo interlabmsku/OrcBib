@@ -15,7 +15,7 @@ export class SearchComponent implements OnInit {
   }
 
   isOrcidValid() {
-    if (this.searchBar.length === 19) {
+    if (this.searchBar.match('[0-9Xx]{4}-[0-9Xx]{4}-[0-9Xx]{4}-[0-9Xx]{4}')) {
       return true;
     }
     return false;

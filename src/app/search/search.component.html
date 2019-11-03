@@ -3,15 +3,42 @@
     <div class="input-group-prepend">
       <span class="input-group-text" id="basic-addon3">https://orcid.org/</span>
     </div>
-    <input type="text" placeholder="orcID"  class="form-control" [(ngModel)]="searchBar" aria-describedby="basic-addon3">
+    <input type="text" placeholder="orcID"  class="form-control" [(ngModel)]="searchBar" aria-describedby="basic-addon3" oninput="this.value = this.value.toUpperCase()">
+  </div>
+</div>
+<div class="row justify-content-center mt-3" *ngIf="isOrcidValid()">
+  <div class="d-flex justify-content-end col-6">
+    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#shareModal">Share</button>
   </div>
 </div>
 
-<div class="row d-flex justify-content-center my-5">
+<!-- Modal -->
+<div class="modal fade" id="shareModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Share</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body p-3">
+        <div class="col bg-dark text-light rounded p-2" [innerText]='"<iframe src=\"https:\/\/orcbib.firebaseapp.com/biblist/" + this.searchBar + "\" style=\"border: none\"></iframe>"'>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-info">Copy</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row d-flex justify-content-center my-3">
   <app-bib-list class="col-6" *ngIf="isOrcidValid(); else notValidOrcid" [orcid]="searchBar"></app-bib-list>
 </div>
 
 
 <ng-template #notValidOrcid>
-  Orcid is not valid
+  {{ this.searchBar == "" ? "Enter your OrcID" : "Orcid is not valid"}}
 </ng-template>
