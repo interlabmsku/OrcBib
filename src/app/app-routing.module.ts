@@ -7,6 +7,7 @@ import {SearchComponent} from './search/search.component';
 const routes: Routes = [
   { path: '', component: SearchComponent },
   { path: 'biblist', component: BibListComponent },
+  { path: 'biblist/:orcid', component: BibListComponent }
 ];
 
 @NgModule({

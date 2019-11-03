@@ -1,5 +1,6 @@
 import {Component, Input, OnInit, OnChanges} from '@angular/core';
 import { OrcidService } from '../orcid.service';
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-bib-list',
@@ -12,10 +13,15 @@ export class BibListComponent implements OnInit, OnChanges {
   listOfWorks: Array<number> = [];
   contentToShow: Array<any> = [];
 
-  constructor(private orcidService: OrcidService) { }
+  constructor(private orcidService: OrcidService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    if(this.route.snapshot.paramMap.get("orcid") != null){
+      this.orcid = this.route.snapshot.paramMap.get("orcid")
+      this.ngOnChanges()
+    }
   }
+
 
   ngOnChanges() {
     this.listOfWorks = [];
